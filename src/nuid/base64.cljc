@@ -7,7 +7,7 @@
 (defn encode
   ([s] (encode s :utf8))
   ([s charset]
-   (let [b (if (string? s) (bytes/from s charset) s)]
+   (let [b (if (bytes/bytes? s) s (bytes/from s charset))]
      #?(:clj (.encodeToString (Base64/getEncoder) b)
         :cljs (.toString b "base64")))))
 
