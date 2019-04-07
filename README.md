@@ -8,11 +8,11 @@ Cross-platform base64 {en,de}coding.
 
 ## From Clojure and ClojureScript
 
-#### tools.deps:
+### tools.deps:
 
 `{nuid/base64 {:git/url "https://github.com/nuid/base64" :sha "..."}`
 
-#### usage:
+### usage:
 
 ```
 $ clj # or shadow-cljs node-repl
@@ -30,7 +30,7 @@ Because this library exists as a common interface over exception facilities, it 
 
 ## From JavaScript
 
-#### node:
+### node:
 
 ```
 $ shadow-cljs release node
@@ -43,7 +43,7 @@ $ node
 > B64.toString(b64, "utf16le")
 ```
 
-#### browser:
+### browser:
 
 ```
 $ shadow-cljs release browser
@@ -66,14 +66,14 @@ The purpose of `nuid.base64` and sibling `nuid` libraries is to abstract over pl
 
 Install [`git-hooks`](https://github.com/icefox/git-hooks) and fire away. Make sure not to get bitten by [`externs`](https://clojurescript.org/guides/externs) if modifying `npm` dependencies.
 
-#### formatting:
+### formatting:
 
 ```
 $ clojure -A:cljfmt            # check
 $ clojure -A:cljfmt:cljfmt/fix # fix
 ```
 
-#### dependencies:
+### dependencies:
 
 ```
 ## check
