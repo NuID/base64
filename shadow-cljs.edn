@@ -1,0 +1,12 @@
+{:builds
+ {:browser
+  {:modules {:nuid_base64 {:entries [nuid.base64]}}
+   :output-dir "target/browser"
+   :asset-path "target/browser"
+   :target :browser}
+
+  :node
+  {:output-to "target/node/nuid_base64.js"
+   :exports-var nuid.base64/exports
+   :target :node-library}}
+ :deps {:aliases []}}
