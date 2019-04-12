@@ -49,6 +49,8 @@
        ([b64] (bytes/str (decode b64)))
        ([b64 charset] (bytes/str (decode b64) charset)))))
 
-#?(:cljs (def exports #js {:encode #(encode %1 (or (keyword %2) :utf8))
-                           :toString #(str %1 (or (keyword %2) :utf8))
-                           :decode decode}))
+#?(:cljs
+   (def exports
+     #js {:encode #(encode %1 (or (keyword %2) :utf8))
+          :toString #(str %1 (or (keyword %2) :utf8))
+          :decode decode}))
