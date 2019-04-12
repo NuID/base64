@@ -17,6 +17,7 @@
      (encode
        ([x] (encode x nil))
        ([x _] (.encodeToString (java.util.Base64/getEncoder) x)))
+
      java.lang.String
      (encode
        ([x] (encode x :utf8))
@@ -28,6 +29,7 @@
      (encode
        ([x] (encode x nil))
        ([x _] (.toString x "base64")))
+
      default
      (encode
        ([x] (encode (bytes/from x)))
