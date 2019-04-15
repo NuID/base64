@@ -10,7 +10,7 @@ Cross-platform base64 {en,de}coding.
 
 ### tools.deps:
 
-`{nuid/base64 {:git/url "https://github.com/nuid/base64" :sha "..."}`
+`{nuid/base64 {:git/url "https://github.com/nuid/base64" :sha "..."}}`
 
 ### usage:
 
