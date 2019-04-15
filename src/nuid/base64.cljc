@@ -21,9 +21,17 @@
      java.lang.String
      (encode
        ([x] (encode x :utf8))
-       ([x charset] (encode (bytes/from x charset)))))
+       ([x charset] (encode (bytes/from x charset))))))
 
-   :cljs
+#?(:clj
+   (extend-protocol Base64
+     java.lang.String
+     (decode [b64] (.decode (java.util.Base64/getDecoder) b64))
+     (str
+       ([b64] (bytes/str (decode b64)))
+       ([b64 charset] (bytes/str (decode b64) charset)))))
+
+#?(:cljs
    (extend-protocol Base64able
      js/Buffer
      (encode
@@ -35,15 +43,7 @@
        ([x] (encode (bytes/from x)))
        ([x charset] (encode (bytes/from x charset))))))
 
-#?(:clj
-   (extend-protocol Base64
-     java.lang.String
-     (decode [b64] (.decode (java.util.Base64/getDecoder) b64))
-     (str
-       ([b64] (bytes/str (decode b64)))
-       ([b64 charset] (bytes/str (decode b64) charset))))
-
-   :cljs
+#?(:cljs
    (extend-protocol Base64
      string
      (decode [b64] (b/Buffer.from b64 "base64"))
