@@ -33,7 +33,7 @@
 
 #?(:cljs
    (extend-protocol Base64able
-     js/Buffer
+     b/Buffer
      (encode
        ([x] (encode x nil))
        ([x _] (.toString x "base64")))
