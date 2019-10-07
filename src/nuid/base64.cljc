@@ -1,8 +1,12 @@
 (ns nuid.base64
+  (:refer-clojure :exclude [str])
   (:require
    [nuid.bytes :as bytes]
-   #?@(:cljs [["buffer" :as b]]))
-  (:refer-clojure :exclude [str]))
+   #?@(:clj
+       [[clojure.spec-alpha2 :as s]]
+       :cljs
+       [[clojure.spec.alpha :as s]
+        ["buffer" :as b]])))
 
 (defprotocol Base64able
   (encode [x] [x charset]))
@@ -10,6 +14,11 @@
 (defprotocol Base64
   (decode [b64])
   (str [b64] [b64 charset]))
+
+(def regex-ends-with #"(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$")
+(def regex (re-pattern (clojure.core/str "^" (re-pattern regex-ends-with))))
+(s/def ::encoded (s/and string? not-empty #(re-matches regex %)))
+(def encoded? (partial s/valid? ::encoded))
 
 #?(:clj
    (extend-protocol Base64able
@@ -51,8 +60,4 @@
        ([b64] (bytes/str (decode b64)))
        ([b64 charset] (bytes/str (decode b64) charset)))))
 
-#?(:cljs
-   (def exports
-     #js {:encode #(encode %1 (or (keyword %2) :utf8))
-          :toString #(str %1 (or (keyword %2) :utf8))
-          :decode decode}))
+#?(:cljs (def exports #js {}))
