@@ -15,9 +15,10 @@
   (decode [b64])
   (str [b64] [b64 charset]))
 
-(def regex-ends-with #"(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$")
-(def regex (re-pattern (clojure.core/str "^" (re-pattern regex-ends-with))))
-(s/def ::encoded (s/and string? not-empty #(re-matches regex %)))
+(def regex-base-str "(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?")
+(def regex-ends-with (re-pattern (clojure.core/str regex-base-str "$")))
+(def regex (re-pattern (clojure.core/str "^" regex-base-str "$")))
+(s/def ::encoded (s/and string? not-empty (fn [s] (re-matches regex s))))
 (def encoded? (partial s/valid? ::encoded))
 
 #?(:clj
