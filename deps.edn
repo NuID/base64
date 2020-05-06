@@ -1,7 +1,7 @@
 {:deps
  {nuid/bytes
   {:git/url "https://github.com/nuid/bytes.git",
-   :sha "d4bbf0382fc404c525064a845892996a95cad7dd"},
+   :sha "e4fec647ee25931866e7557a1a1cf564b0f5fe71"},
   org.clojure/clojure {:mvn/version "1.10.1"},
   org.clojure/alpha.spec
   {:git/url "https://github.com/clojure/spec-alpha2",
