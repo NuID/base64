@@ -11,7 +11,7 @@
 
   java.lang.String
   (encode
-    ([x]         (proto/encode x :utf8))
+    ([x]         (proto/encode (bytes/from x)))
     ([x charset] (proto/encode (bytes/from x charset)))))
 
 (extend-protocol proto/Base64

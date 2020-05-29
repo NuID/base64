@@ -19,6 +19,14 @@
 (def encoded?
   (partial s/valid? ::encoded))
 
-(def encode proto/encode)
-(def decode proto/decode)
-(def str    proto/str)
+(defn encode
+  ([x]         (proto/encode x))
+  ([x charset] (proto/encode x charset)))
+
+(defn decode
+  [b64]
+  (proto/decode b64))
+
+(defn str
+  ([b64]         (proto/str b64))
+  ([b64 charset] (proto/str b64 charset)))
