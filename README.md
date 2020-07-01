@@ -19,11 +19,11 @@ Cross-platform base64 {en,de}coding.
 ```
 $ clj # or shadow-cljs node-repl
 => (require '[nuid.base64 :as base64])
-=> (def b64 (base64/encode "🐴")) ;; defaults to reading input as utf8
-=> b64                            ;; => "8J+QtA=="
-=> (base64/decode b64)            ;; => buffer-like: [-16 -97 -112 -76] (endianness may vary)
-=> (base64/str b64)               ;; => "🐴"
-=> (base64/str b64 :utf16le)      ;; => "鿰뒐"
+=> (def b64 (base64/encode "🐴"))    ;; defaults to reading input as utf8
+=> b64                               ;; => "8J+QtA=="
+=> (base64/decode b64)               ;; => buffer-like: [-16 -97 -112 -76] (endianness may vary)
+=> (base64/str b64)                  ;; => "🐴"
+=> (base64/str b64 :charset/utf16le) ;; => "鿰뒐"
 ```
 
 ## Licensing
