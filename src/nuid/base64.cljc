@@ -1,10 +1,9 @@
 (ns nuid.base64
   (:refer-clojure :exclude [str])
   (:require
+   [clojure.spec.alpha :as s]
    [nuid.base64.impl]
-   [nuid.base64.proto :as proto]
-   #?@(:clj  [[clojure.alpha.spec :as s]]
-       :cljs [[clojure.spec.alpha :as s]])))
+   [nuid.base64.proto :as proto]))
 
 (def regex-base-str  "(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?")
 (def regex-ends-with (re-pattern (clojure.core/str regex-base-str "$")))
